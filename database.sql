@@ -22,6 +22,9 @@ CREATE TABLE "tasks" (
     When it is Non-urgent and Non-important it will have the state of Eliminate and is recommended to delete.
     Delete state means it is deleted??? */
 
+/* Slections everything in table*/
+SELECT * FROM "tasks";
+
 /* Data example: */
 INSERT INTO "tasks" ("task_name", "task_details", "matrix_status", "due_date", "urgence_level", "importance_level", "progress_state")
 	VALUES ('Finish weekend assignment', 'This is something that needs to be done.', 'Do', 06/08/2020, 'Urgent', 'Important', 'Inprogress');
