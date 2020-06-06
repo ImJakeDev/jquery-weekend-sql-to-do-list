@@ -24,6 +24,27 @@ taskRouter.get('/', (req, res) => {
 
 // POST
 
+// POSTs new task into database
+taskRouter.post('/', (req, res) => {
+	// get the task object
+	const newTask = req.body;
+	console.log(req.body);
+	// typecast the ready_to_transfer string into boolean. must be "==" to work!
+	// newTask.ready_to_transfer = newTask.ready_to_transfer;
+	// console.log(newTask.ready_to_transfer);
+
+	const queryText = `INSERT INTO "tasks" (task_name, task_details, matrix_status, due_date, schedule_date, urgence_level, importance_level, progress_state) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`;
+	pool.query(queryText, [newTask.task_name, newTask.task_details, newTask.matrix_status, newTask.due_date, newTask.schedule_date, newTask.urgence_level, newTask.importance_level, newTask.progress_state])
+		.then((result) => {
+			res.status(201).send(`${newTask} was added to the database!`);
+		})
+		.catch((err) => {
+			console.log(`Error making query ${queryText}`, err);
+			res.sendStatus(500);
+		});
+});
+
 // PUT
 
 // DELETE
