@@ -49,4 +49,24 @@ taskRouter.post('/', (req, res) => {
 
 // DELETE
 
+// DELETEs a task from the DB
+// Request must include a parameter indicating what book to update - the id
+taskRouter.delete('/:id', (req, res) => {
+	//let testArray = [req.params]
+	let id = req.params.id; // id of the thing to delete
+	console.log('Delete route called with id of', id);
+	// let queryTextForSelect = `SELECT * FROM "books" WHERE "id" = $1;`
+	let queryTextForDelete = `DELETE FROM "tasks" WHERE "id" = $1;`
+	// TODO - REPLACE BELOW WITH YOUR CODE
+	pool.query(queryTextForDelete, [id])
+		.then((result) => {
+			console.log(result);
+			res.status(200).send(result.rows);
+		})
+		.catch((error) => {
+			console.log(error);
+			res.sendStatus(500);
+		});
+});
+
 module.exports = taskRouter;
