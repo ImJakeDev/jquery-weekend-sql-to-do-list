@@ -93,7 +93,7 @@
             </div>
             <!-- Submit task -->
             <div class="d-flex justify-content-center mt-4">
-                <button type="button" class="btn btn-outline-primary" id="sumbitTask">Add task</button>
+                <button type="button" class="btn btn-outline-secondary" id="sumbitTask">Add task</button>
             </div>
         </section>
         <hr>
@@ -117,8 +117,8 @@
                     </table>
                 </div>
                 <div id="schedule" class="m-2">
-                    <table class="table table-primary table-striped">
-                        <thead>
+                    <table id="scheduleTable" class="table table-striped">
+                        <thead class="text-white bg-primary">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Tasks</th>
@@ -126,7 +126,7 @@
                                 <th scope="col">Delete</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="scheduleTbody">
                             <tr>
                             </tr>
                         </tbody>
@@ -134,8 +134,8 @@
                 </div>
             <div class="w-100"></div>
                 <div id="delegate" class="m-2">
-                    <table class="table table-warning table-striped">
-                        <thead>
+                    <table id="delegateTable" class="table table-striped">
+                        <thead class="text-white bg-warning">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Tasks</th>
@@ -143,15 +143,15 @@
                                 <th scope="col">Delete</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="delegateTbody">
                             <tr>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div id="eliminate" class="m-2">
-                    <table class="table table-danger table-striped">
-                        <thead>
+                    <table id="eliminateTable" class="table table-striped">
+                        <thead class="text-white bg-danger">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Tasks</th>
@@ -159,7 +159,7 @@
                                 <th scope="col">Delete</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="eliminateTbody">
                             <tr>
                             </tr>
                         </tbody>
