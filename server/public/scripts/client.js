@@ -3,6 +3,7 @@ $(document).ready(readyNow);
 function readyNow() {
     console.log('Testing testing 1 2 3...');
     $('#sumbitTask').click(saveTasks);
+    $(".table").on("click", ".deleteButton", deleteTask);
     refreshTasks();
 }
 
@@ -113,8 +114,25 @@ function refreshTasks() {
 			// rowElement.append(
 			// 	`<td><button class = "btn btn-danger deleteButton">Remove</button></td>`
 			// );
-
+            rowElement.append(
+              `<td><button class = "btn btn-danger deleteButton">Remove</button></td>`
+            );
 			$('#doTable #doTbody').append(rowElement);
 		}
 	})
+}
+
+function deleteTask(event) {
+  let taskId = $(event.target).closest("tr").data("task").id;
+
+  $.ajax({
+    method: "DELETE",
+    url: `/tasks/${taskId}`,
+  })
+    .then(function (response) {
+      refreshTasks();
+    })
+    .catch(function (error) {
+      alert("Error on delete", error);
+    });
 }
