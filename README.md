@@ -1,9 +1,8 @@
-# Project Name
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# Jake's To-Do Matrix
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+I solved the problem of prioritizing tasks for a user. 
+When the user inters a task through the inputs. The task automaticly shows up in the correct area. 
 
 Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
