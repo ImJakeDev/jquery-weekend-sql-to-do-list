@@ -95,8 +95,8 @@ function refreshTasks() {
             // rowElement.append(`<td>${progressState}</td>`);
             // If matrix status is 'Do' append here:
             // I could use this checkbox for my progress state...
-			if (matrixStatus === 'Do') {
-				let checkbox = $('<input type="checkbox"/>').prop('checked', true).prop('disabled', true);
+			if (progressState === 'Complete') {
+				let checkbox = $('<input type="checkbox" aria-label="Checkbox for following text input"/>').prop('checked', true).prop('disabled', true);
 				let td = $('<td></td>').append(checkbox);
 				rowElement.append(td);
 				//$('#readyForTransferIn:checkbox:checked')
@@ -106,16 +106,16 @@ function refreshTasks() {
             // If matrix status is 'Delegate' append here:
             // If matrix status is 'Eliminate' append here:
             else {
-				let checkbox = $('<input type="checkbox" class="readyToTransfer"/>').prop('checked', false).prop('disabled', false);
+				let checkbox = $('<input type="checkbox" class="readyToTransfer" aria-label="Checkbox for following text input"/>').prop('checked', false).prop('disabled', false);
 				let td = $('<td></td>').append(checkbox);
 				rowElement.append(td);
 			}
 			// rowElement.append(`<td>${notes}</td>`)
 			// rowElement.append(
 			// 	`<td><button class = "btn btn-danger deleteButton">Remove</button></td>`
-			// );
+            // );
             rowElement.append(
-              `<td><button class = "btn btn-danger deleteButton">Remove</button></td>`
+              `<td><button class = "btn btn-outline-danger deleteButton">X</button></td>`
             );
 			$('#doTable #doTbody').append(rowElement);
 		}
