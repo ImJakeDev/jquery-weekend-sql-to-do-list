@@ -6,12 +6,14 @@ function readyNow() {
   refreshTasks();
 }
 
+// function listens for clicks
 function setupClickListeners() {
   $("#sumbitTask").click(saveTasks);
   $(".table").on("click", ".deleteButton", deleteTask);
   $(".table").on("click", ".progressStatus", updateTaskProgressStatus);
 }
 
+// on check on check box it will change it's progress_state
 function updateTaskProgressStatus(event) {
   let taskID = $(event.target).closest("tr").data("task").id;
   $.ajax({
@@ -25,17 +27,15 @@ function updateTaskProgressStatus(event) {
       // error, notify the user:,
       alert("Request failed. Try again later.");
     });
-  // I will need a whole server side HTTP request to now GET anything with complete:
-  // $(event.target).closest("tr").fadeOut().remove();
 }
 
+// functions takes inputs and gives body to DB to store
 function saveTasks() {
   console.log("In saveTasks function!");
   if (validateInputs()) {
-    // checks if the inputs are infact invald, if so, return false.
     return false;
   }
-  // ajax call to server to get tasks
+  // values of imputs
   const taskName = $("#taskNameIn").val();
   const taskUrgenceLevel = $("#urgenceLevelIn").val();
   const taskImportanceLevel = $("#importanceLevelIn").val();
@@ -64,6 +64,7 @@ function saveTasks() {
     });
 }
 
+// validation function for inputs
 function validateInputs() {
   if (
     $("#taskNameIn").val() === "" ||
@@ -75,8 +76,8 @@ function validateInputs() {
   }
 }
 
+// function to clear the input fields
 function clearInputs() {
-  // function to clear the input fields
   $("#taskNameIn").val("");
   $("#urgenceLevelIn").val("");
   $("#importanceLevelIn").val("");
@@ -88,28 +89,24 @@ function refreshTasks() {
   console.log("In refreshTask function!");
   $.ajax({
     method: "GET",
-    url: "/tasks",
+    url: "/tasks/",
   }).then(function (response) {
     $("#doTable #doTbody").empty();
+    let spot = 0;
     for (const task of response) {
+        spot++;
       let rowElement = $('<tr class="table-success"></tr>');
       // Will need to think more about how and where to use these
       const name = task.task_name;
       const details = task.task_details;
-      const matrixStatus = task.matrix_status;
-      const urgence = task.urgence_level;
-      const importance = task.importance_level;
+    //   const matrixStatus = task.matrix_status;
+    //   const urgence = task.urgence_level;
+    //   const importance = task.importance_level;
       const progressState = task.progress_state;
       // What do I actually need to append in the table?
       rowElement.data("task", task);
-      // Need to make this a variable that increments
-      rowElement.append(`<th scope="row">1</th>`);
-      //////////////////////////////////////////////
+      rowElement.append(`<th scope="row">${spot}</th>`);
       rowElement.append(`<td>${name}</td>`);
-      // rowElement.append(`<td>${details}</td>`);
-      // rowElement.append(`<td>${progressState}</td>`);
-      // If matrix status is 'Do' append here:
-      // I could use this checkbox for my progress state...
       if (progressState === "Complete") {
         let checkbox = $(
           '<input type="checkbox" aria-label="Checkbox for following text input"/>'
