@@ -3,10 +3,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jake's To Do App!</title>
-    <script src="vendors/jquery.js" charset="utf-8"></script>
+
+    <!-- Bootstrap CDN -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- Client JS -->
     <script src="scripts/client.js" charset="utf-8"></script>
+
 </head>
+
+<!-- Up next is the body -->
+
 <body>
-    
+
+    <!-- This is the header -->
+    <header>
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light sticky-top">
+            <a class="navbar-brand" href="#">
+                <img src="assets/matrix.svg" width="30" height="30" class="d-inline-block align-top"alt="">
+                To Do Matrix
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li> -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- This is the main content area -->
+    <main>
+        <!-- Input section -->
+        <section class="container mt-4">
+            <!-- Input for task_name -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Name of task to do.</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <!-- Input for task_due_date -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Is there a to do date?</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <!-- Input for task_urgence_level -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">How urgent is this task?</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                    <!-- <option selected>Urgent</option> -->
+                    <option value="1">Urgent</option>
+                    <option value="2">Non-urgent</option>
+                </select>
+            </div>
+            <!-- Input for task_importance_level -->
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">How important is this task?</label>
+                </div>
+                <select class="custom-select" id="inputGroupSelect01">
+                    <!-- <option selected>Important</option> -->
+                    <option value="1">Important</option>
+                    <option value="2">Non-important</option>
+                </select>
+            </div>
+            <!-- Input for task_details -->
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Details of task</span>
+                </div>
+                <textarea class="form-control" aria-label="With textarea"></textarea>
+            </div>
+        </section>
+        <!-- Eisenhower Matrix area -->
+        <section>
+            <div id="do"></div>
+            <div id="schedule"></div>
+            <div id="delegate"></div>
+            <div id="eliminate"></div>
+        </section>
+    </main>
+
+    <!-- This is the footer -->
+    <footer></footer>
 </body>
 </html>
