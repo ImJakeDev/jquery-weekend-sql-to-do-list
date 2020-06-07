@@ -4,6 +4,7 @@ function readyNow() {
     console.log('Testing testing 1 2 3...');
     $('#sumbitTask').click(saveTasks);
     $(".table").on("click", ".deleteButton", deleteTask);
+    $(".table").on("click", ".progressStatus", updateTaskProgressStatus);
     refreshTasks();
 }
 
@@ -13,6 +14,23 @@ function addTaskClickHandler() {
     const taskUrgenceLevel = $('#urgenceLevelIn').val();
     const taskImportanceLevel = $('#importanceLevelIn').val();
     const taskDetails = $('#taskDetailsIn').val();
+}
+
+function updateTaskProgressStatus(event) {
+  let taskID = $(event.target).closest("tr").data("task").id;
+  $.ajax({
+    method: "PUT",
+    url: `/tasks/${taskID}`,
+  })
+    .then((response) => {
+      refreshTasks();
+    })
+    .catch((response) => {
+      // error, notify the user:,
+      alert("Request failed. Try again later.");
+    });
+    // I will need a whole server side HTTP request to now GET anything with complete:
+    // $(event.target).closest("tr").fadeOut().remove();
 }
 
 function saveTasks() {
@@ -48,7 +66,6 @@ function saveTasks() {
 		alert('something went wrong');
 	})
 }
-
 
 function validateInputs() {
 	if ($('#taskNameIn').val() === '' ||
@@ -106,7 +123,7 @@ function refreshTasks() {
             // If matrix status is 'Delegate' append here:
             // If matrix status is 'Eliminate' append here:
             else {
-				let checkbox = $('<input type="checkbox" class="readyToTransfer" aria-label="Checkbox for following text input"/>').prop('checked', false).prop('disabled', false);
+				let checkbox = $('<input type="checkbox" class="progressStatus" aria-label="Checkbox for following text input"/>').prop('checked', false).prop('disabled', false);
 				let td = $('<td></td>').append(checkbox);
 				rowElement.append(td);
 			}

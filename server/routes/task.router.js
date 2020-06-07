@@ -47,6 +47,25 @@ taskRouter.post('/', (req, res) => {
 
 // PUT
 
+// Request must include a parameter indicating what task to update - the id
+// Request body must include the content to update - the status
+taskRouter.put('/:id',  (req, res) => {
+    let task = req.body; // koala with updated content
+    let id = req.params.id; // id of the koala to update
+
+    console.log(task);
+    let queryTextForUpdate = `UPDATE "tasks" SET "progress_state"='Complete' WHERE id = $1;`
+    pool.query(queryTextForUpdate, [id])
+        .then((result) => {
+            console.log(result.command);
+            res.status(200).send(`Updating tasks ${id} with , ${task}`);
+        })
+        .catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
+});
+
 // DELETE
 
 // DELETEs a task from the DB
