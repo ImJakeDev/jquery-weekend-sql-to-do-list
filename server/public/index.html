@@ -56,44 +56,47 @@
     <main>
         <!-- Input section -->
         <section class="container mt-4">
-            <!-- Input for task_name -->
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Task</span>
+            <div>
+                <!-- Input for task_name -->
+                <div class="input-group mb-3">
+                	<div class="input-group-prepend">
+                		<span class="input-group-text" id="inputGroup-sizing-default">Task</span>
+                	</div>
+                	<input type="text" id="taskNameIn" class="form-control" aria-label="Default"
+                		aria-describedby="inputGroup-sizing-default">
                 </div>
-                <input type="text" id="taskNameIn" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-            </div>
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <label class="input-group-text" for="urgenceLevelIn">How urgent?</label>
+                <div class="input-group mb-3">
+                	<div class="input-group-prepend">
+                		<label class="input-group-text" for="urgenceLevelIn">How urgent?</label>
+                	</div>
+                	<select class="custom-select" id="urgenceLevelIn">
+                		<!-- <option selected>Urgent</option> -->
+                		<option value="Urgent">Urgent</option>
+                		<option value="Non-urgent">Non-urgent</option>
+                	</select>
                 </div>
-                <select class="custom-select" id="urgenceLevelIn">
-                    <!-- <option selected>Urgent</option> -->
-                    <option value="1">Urgent</option>
-                    <option value="2">Non-urgent</option>
-                </select>
-            </div>
-            <!-- Input for task_importance_level -->
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <label class="input-group-text" for="importanceLevelIn">How important?</label>
+                <!-- Input for task_importance_level -->
+                <div class="input-group mb-3">
+                	<div class="input-group-prepend">
+                		<label class="input-group-text" for="importanceLevelIn">How important?</label>
+                	</div>
+                	<select class="custom-select" id="importanceLevelIn">
+                		<!-- <option selected>Important</option> -->
+                		<option value="Important">Important</option>
+                		<option value="Non-important">Non-important</option>
+                	</select>
                 </div>
-                <select class="custom-select" id="importanceLevelIn">
-                    <!-- <option selected>Important</option> -->
-                    <option value="1">Important</option>
-                    <option value="2">Non-important</option>
-                </select>
-            </div>
-            <!-- Input for task_details -->
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Details</span>
+                <!-- Input for task_details -->
+                <div class="input-group">
+                	<div class="input-group-prepend">
+                		<span class="input-group-text">Details</span>
+                	</div>
+                	<textarea id="taskDetailsIn" class="form-control" aria-label="With textarea"></textarea>
                 </div>
-                <textarea id="taskDetailsIn" class="form-control" aria-label="With textarea"></textarea>
-            </div>
-            <!-- Submit task -->
-            <div class="d-flex justify-content-center mt-4">
-                <button type="button" class="btn btn-outline-secondary" id="sumbitTask">Add task</button>
+                <!-- Submit task -->
+                <div class="d-flex justify-content-center mt-4">
+                	<button type="button" class="btn btn-outline-secondary" id="sumbitTask">Add task</button>
+                </div>
             </div>
         </section>
         <hr>
@@ -114,8 +117,6 @@
                             </tr>
                         </thead>
                         <tbody id="doTbody">
-                            <tr class="table-success">
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -133,8 +134,6 @@
                             </tr>
                         </thead>
                         <tbody id="scheduleTbody">
-                            <tr>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -153,8 +152,6 @@
                             </tr>
                         </thead>
                         <tbody id="delegateTbody">
-                            <tr>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -172,15 +169,33 @@
                             </tr>
                         </thead>
                         <tbody id="eliminateTbody">
-                            <tr>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
         <hr>
-        <section></section>
+        <section>
+            <div class="container">
+                <div>
+                    <div class="text-white bg-dark p-1 d-flex justify-content-center align-items-center">
+                    	<h3>Completed Tasks:</h3>
+                    </div>
+                    <table id="completedTable" class="table table-striped">
+                        <thead class="text-white bg-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Tasks</th>
+                                <th scope="col">Check</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody id="completedTbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- This is the footer -->
