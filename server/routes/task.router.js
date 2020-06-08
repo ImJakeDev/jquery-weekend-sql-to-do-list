@@ -46,18 +46,18 @@ taskRouter.get("/:progress", (req, res) => {
 taskRouter.get("/status/:matrix", (req, res) => {
 	let task = req.body; // task with updated content
 	let matrix = req.params.matrix; // matrix of the task to update
-	console.log(matrix);
-	console.log('Here is the matrix status body:', task);
+	// console.log(matrix);
+	// console.log(task);
 	let queryText =
 		'SELECT * FROM "tasks" WHERE "matrix_status" = $1 ORDER BY "task_name"';
 	pool
 		.query(queryText, [matrix])
 		.then((result) => {
-			console.log('Here are tasks that are in progress from the', matrix);
+			console.log('Here are tasks that are in from the', matrix);
 			res.status(200).send(result.rows);
 		})
 		.catch((err) =>
-			res.status(500).send(`Error Connecting to Database: ${err}`)
+			res.status(500).send('Error Connecting to Database:', err)
 		);
 });
 
@@ -68,7 +68,7 @@ taskRouter.post("/", (req, res) => {
 	// get the task object
 	const newTask = req.body;
 	console.log(req.body);
-
+	// Validation:
 	if (newTask.matrix_status === '') {
 		res.sendStatus(400);
 		return;

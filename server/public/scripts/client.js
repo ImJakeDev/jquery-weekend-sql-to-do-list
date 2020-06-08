@@ -13,7 +13,7 @@ function readyNow() {
 
 // function listens for clicks
 function setupClickListeners() {
-	$("#sumbitTask").click(saveTasks);
+	$("#inputArea").on("click", '#sumbitTask', saveTasks);
 	$(".table").on("click", ".deleteButton", deleteTask);
 	$(".table").on("click", ".progressStatus", updateTaskProgressStatus);
 }
@@ -77,18 +77,18 @@ function saveTasks() {
 			data: matrixObj,
 		})
 		.then(function (response) {
-			// update the history
-			// refreshTasks();
+			refreshTasks();
 			refreshDoTasks();
 			refreshScheduleTasks();
 			refreshDelegateTasks();
 			refreshEliminateTasks();
 			clearInputs();
 		})
-		.catch(function (response) {
+		.catch(function (error) {
 			// only called when server returns 4xx 5xx
 			alert("something went wrong");
 		});
+	location.reload();
 }
 
 // validation function for inputs
@@ -106,8 +106,8 @@ function validateInputs() {
 // function to clear the input fields
 function clearInputs() {
 	$("#taskNameIn").val("");
-	$("#urgenceLevelIn").val("");
-	$("#importanceLevelIn").val("");
+	// $("#urgenceLevelIn").val("");
+	// $("#importanceLevelIn").val("");
 	$("#taskDetailsIn").val("");
 }
 
@@ -122,37 +122,37 @@ function refreshTasks() {
 		// $("#scheduleTable #scheduleTbody").empty();
 		// $("#delegateTable #delegateTbody").empty();
 		// $("#eliminateTable #eliminateTbody").empty();
-		let spot = 0;
-		let option = null;
-		for (const task of response) {
-			spot++;
-			let rowElement = $('<tr></tr>');
-			const name = task.task_name;
-			const matrixStatus = task.matrix_status;
-			const progressState = task.progress_state;
-			rowElement.data("task", task);
-			rowElement.append(`<th scope="row">${spot}</th>`);
-			rowElement.append(`<td>${name}</td>`);
-			if (progressState === "Complete") {
-				let checkbox = $(
-						'<input type="checkbox" aria-label="Checkbox for following text input"/>'
-					)
-					.prop("checked", true)
-					.prop("disabled", true);
-				let td = $("<td></td>").append(checkbox);
-				rowElement.append(td);
-			} else {
-				let checkbox = $(
-						'<input type="checkbox" class="progressStatus" aria-label="Checkbox for following text input"/>'
-					)
-					.prop("checked", false)
-					.prop("disabled", false);
-				let td = $("<td></td>").append(checkbox);
-				rowElement.append(td);
-			}
-			rowElement.append(
-				`<td><button class = "btn btn-outline-danger deleteButton">X</button></td>`
-			);
+		// let spot = 0;
+		// let option = null;
+		// for (const task of response) {
+		// 	spot++;
+		// 	let rowElement = $('<tr></tr>');
+		// 	const name = task.task_name;
+		// 	const matrixStatus = task.matrix_status;
+		// 	const progressState = task.progress_state;
+		// 	rowElement.data("task", task);
+		// 	rowElement.append(`<th scope="row">${spot}</th>`);
+		// 	rowElement.append(`<td>${name}</td>`);
+		// 	if (progressState === "Complete") {
+		// 		let checkbox = $(
+		// 				'<input type="checkbox" aria-label="Checkbox for following text input"/>'
+		// 			)
+		// 			.prop("checked", true)
+		// 			.prop("disabled", true);
+		// 		let td = $("<td></td>").append(checkbox);
+		// 		rowElement.append(td);
+		// 	} else {
+		// 		let checkbox = $(
+		// 				'<input type="checkbox" class="progressStatus" aria-label="Checkbox for following text input"/>'
+		// 			)
+		// 			.prop("checked", false)
+		// 			.prop("disabled", false);
+		// 		let td = $("<td></td>").append(checkbox);
+		// 		rowElement.append(td);
+		// 	}
+		// 	rowElement.append(
+		// 		`<td><button class = "btn btn-outline-danger deleteButton">X</button></td>`
+		// 	);
 
 			// if (matrixStatus == 'Do') {
 			//     console.log('Does it equal do');
@@ -181,7 +181,7 @@ function refreshTasks() {
 			//   console.log("Does it equal eliminate");
 			//   $("#eliminateTable #eliminateTbody").append(rowElement);
 			// }
-		}
+		// }
 	});
 }
 
@@ -351,7 +351,6 @@ function deleteTask(event) {
 			url: `/tasks/${taskId}`,
 		})
 		.then(function (response) {
-            // refreshTasks();
             refreshDoTasks();
             refreshScheduleTasks();
             refreshDelegateTasks();

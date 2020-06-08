@@ -8,7 +8,7 @@ CREATE DATABASE "weekend-to-do-app";
 /* enter the database before continuing */
 
 CREATE TABLE "tasks" (
-	"id" 				INT GENERATED ALWAYS AS IDENTITY, /* Always a unique identifier */
+	"id" 				INT GENERATED ALWAYS AS IDENTITY, /* Always a unique identifier */ /* SERIAL PRIMARY KEY */
 	"task_name" 		VARCHAR(100) NOT NULL, /* A short task discription */
 	"task_details"	    TEXT, /* If needed more information is stroed here */
 	"matrix_status"		VARCHAR(11) NOT NULL, /* 4 options (Do, Schedule, Delegate, Eliminate) to choose where task is displayed in the matrix */
@@ -21,6 +21,13 @@ CREATE TABLE "tasks" (
     When check box is clicked it is Complete and will "disappear" from DOM. 
     When it is Non-urgent and Non-important it will have the state of Eliminate and is recommended to delete.
     Delete state means it is deleted??? */
+
+/* TIMESONES BE AWARE */
+
+/*
+completed boolean DEFAULT false, 
+created_at timestap NOT NULL DEFAULT NOW()
+*/
 
 /* Slections everything in table*/
 SELECT * FROM "tasks";
